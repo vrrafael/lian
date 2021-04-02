@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::middleware(['auth'])->group(function () {  
+Route::middleware(['auth'])->group(function () {
     Route::get('/', function () {
         return view('home');
     })->name('home');
@@ -28,7 +28,15 @@ Route::middleware(['auth'])->group(function () {
 
         return redirect()->route('login');
     })->name('logout');
+
 });
+
+Route::name('projetos.')
+    ->prefix('projetos')
+    ->middleware(['auth'])
+    ->group(function () {
+        Route::get('/', 'App\Http\Controllers\ProjetosController@index')->name('index');
+    });
 
 Route::post('authenticate', 'App\Http\Controllers\LoginController@authenticate')->name('authenticate');
 

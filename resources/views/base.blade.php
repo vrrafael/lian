@@ -17,6 +17,10 @@
             color: #212121
         }
 
+        a {
+            color: #212121
+        }
+
     </style>
 
     <!--Let browser know website is optimized for mobile-->
@@ -32,13 +36,13 @@
             <div class="nav-wrapper">
                 <a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="{{ route('logout') }}">Logout</a></li>                    
+                    <li><a href="{{ route('logout') }}">Logout</a></li>
                 </ul>
             </div>
         </nav>
 
         <ul class="sidenav" id="mobile">
-            <li><a href="{{ route('logout') }}">Logout</a></li>                    
+            <li><a href="{{ route('logout') }}">Logout</a></li>
         </ul>
     @endauth
 
@@ -54,6 +58,11 @@
         document.addEventListener('DOMContentLoaded', function() {
             var elems = document.querySelectorAll('.sidenav');
             var instances = M.Sidenav.init(elems);
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.tooltipped');
+            var instances = M.Tooltip.init(elems);
         });
 
     </script>
