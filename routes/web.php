@@ -14,12 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth'])->group(function () {  
     Route::get('/', function () {
-        return view('welcome');
-    })->name('main');
-
-    Route::get('home', function () {
         return view('home');
     })->name('home');
 
@@ -38,7 +34,7 @@ Route::post('authenticate', 'App\Http\Controllers\LoginController@authenticate')
 
 Route::get('login', function () {
     if (!Auth::guest()) {
-        return redirect()->route('main');
+        return redirect()->route('home');
     }
 
     return view('login');
