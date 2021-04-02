@@ -19,7 +19,7 @@
                             <td>{{ $projeto->nome }}</td>
                             <td>R$ {{ number_format($projeto->valor, 2, ',', '.') }}</td>
                             <td>
-                                <a href="#" class="tooltipped" data-tooltip="Editar"><i class="material-icons">edit</i></a>
+                                <a href="{{route("projetos.edit", ['id' => $projeto->id])}}" class="tooltipped" data-tooltip="Editar"><i class="material-icons">edit</i></a>
                                 <a href="#" class="tooltipped" data-tooltip="Excluir"><i class="material-icons">delete</i></a>
                                 <a href="#" class="tooltipped" data-tooltip="Ver +"><i class="material-icons">more_horiz</i></a>
                             </td>
