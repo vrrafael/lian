@@ -5,7 +5,7 @@
 
     <div class="row">
         <div class="col s12">
-            <table class="striped responsive-table">
+            <table class="striped">
                 <thead>
                     <tr>
                         <th>Nome</th>
@@ -29,4 +29,5 @@
             </table>
         </div>
     </div>
+    {{ $projetos->links('vendor.pagination.default') }}
 @endsection

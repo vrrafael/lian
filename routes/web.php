@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', function () {
-        return view('home');
+        return redirect()->route('projetos.index');
     })->name('home');
 
     Route::get('logout', function () {
