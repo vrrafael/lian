@@ -26,11 +26,11 @@ class ProjetosController extends Controller
 
         if($updated)
         {
-            request()->session()->flash('success', 'Projeto Atualizado');
+            request()->session()->flash('sucesso', 'Projeto Atualizado');
             return redirect()->route('projetos.index');            
         }
 
-        request()->session()->flash('error', 'Erro ao atualizar dados do projeto');
+        request()->session()->flash('erro', 'Erro ao atualizar dados do projeto');
         return redirect()->back()->withInput();
     }
 

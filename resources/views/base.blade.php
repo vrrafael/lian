@@ -51,11 +51,11 @@
         <div class="row">
             @yield('content')
         </div>
-        <div class="row">
-            @if (session('success'))
-                <div>{{session()->get('success')}}</div>
-            @endif
-        </div>
+
+        <p id="sucesso" style="display: none;">{{ session()->get('sucesso') }}</p>
+        <p id="erro" style="display: none;">{{ session()->get('erro') }}</p>
+        <p id="aviso" style="display: none;">{{ session()->get('aviso') }}</p>
+
     </div>
 
 
@@ -73,6 +73,28 @@
         document.addEventListener('DOMContentLoaded', function() {
             var elems = document.querySelectorAll('select');
             var instances = M.FormSelect.init(elems);
+
+            let sucesso = document.querySelector('#sucesso').innerText
+            let erro = document.querySelector('#erro').innerText
+            let aviso = document.querySelector('#aviso').innerText
+
+            if (sucesso.length)
+                M.toast({
+                    html: sucesso,
+                    classes: 'green darken-4'
+                })
+
+            if (erro.length)
+                M.toast({
+                    html: erro,
+                    classes: 'red darken-4'
+                })
+
+            if (aviso.length)
+                M.toast({
+                    html: aviso,
+                    classes: 'light-blue'
+                })
         });
 
     </script>
