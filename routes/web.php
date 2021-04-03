@@ -36,6 +36,8 @@ Route::name('projetos.')
     ->middleware(['auth'])
     ->group(function () {
         Route::get('/', 'App\Http\Controllers\ProjetosController@index')->name('index');
+        Route::get('create', 'App\Http\Controllers\ProjetosController@create')->name('create');
+        Route::post('store', 'App\Http\Controllers\ProjetosController@store')->name('store');
         Route::get('edit/{id}','App\Http\Controllers\ProjetosController@edit')->name('edit');
         Route::put('edit/{id}','App\Http\Controllers\ProjetosController@update')->name('update');
     });

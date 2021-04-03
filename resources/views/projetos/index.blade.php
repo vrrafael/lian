@@ -2,7 +2,9 @@
 
 @section('content')
     <h2>Projetos</h2>
-
+    <div class="row">
+        <a href="{{route('projetos.create')}}" class="btn orange darken-4">Novo projeto</a>
+    </div>
     <div class="row">
         <div class="col s12">
             <table class="striped">
