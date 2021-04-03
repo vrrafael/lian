@@ -59,20 +59,27 @@
     </div>
 
 
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var elems = document.querySelectorAll('.sidenav');
-            var instances = M.Sidenav.init(elems);
-        });
+            var sidenavs = M.Sidenav.init(elems);
 
-        document.addEventListener('DOMContentLoaded', function() {
             var elems = document.querySelectorAll('.tooltipped');
-            var instances = M.Tooltip.init(elems);
-        });
+            var tooltippeds = M.Tooltip.init(elems);
 
-        document.addEventListener('DOMContentLoaded', function() {
             var elems = document.querySelectorAll('select');
-            var instances = M.FormSelect.init(elems);
+            var selects = M.FormSelect.init(elems);
+
+            var elems = document.querySelectorAll('.modal');
+            var modals = M.Modal.init(elems, {
+                dismissible: false,                
+                onCloseEnd: () => {
+                    document.getElementById('projeto_form').reset()
+                }
+            });
 
             let sucesso = document.querySelector('#sucesso').innerText
             let erro = document.querySelector('#erro').innerText
@@ -95,11 +102,10 @@
                     html: aviso,
                     classes: 'light-blue'
                 })
+
         });
 
     </script>
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 
 </html>

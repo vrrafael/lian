@@ -51,4 +51,27 @@ class ProjetosController extends Controller
         return redirect()->back()->withInput();
     }
 
+    public function simular()
+    {
+        $roi = 0;
+        $dados = request()->all();
+        
+        switch($dados['risco'])
+        {            
+            case '0':
+                $roi += floatval($dados['invest']) * 0.05;
+                break;
+            case '1':
+                $roi += floatval($dados['invest']) * 0.1;
+                break;
+            case '2':
+                $roi += floatval($dados['invest']) * 0.20;
+                break;
+        }
+
+        $dados = array_merge($dados, ['roi' => $roi]);
+
+        return response()->json($dados);
+    }
+
 }

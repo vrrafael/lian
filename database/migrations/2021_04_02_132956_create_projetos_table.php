@@ -19,7 +19,7 @@ class CreateProjetosTable extends Migration
             $table->date('dt_inicio');
             $table->date('dt_fim');
             $table->float('valor', 8, 2);
-            $table->char('risco', 6);
+            $table->char('risco', 6); //baixo, medio, alto
         });
     }
 
