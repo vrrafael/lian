@@ -25,13 +25,19 @@ class ProjetoFactory extends Factory
         $n = mt_rand(1, 100);
         $dt_inicio = Carbon::now()->copy()->subRealDays($n);
         $dt_fim = Carbon::now()->addRealDays($n);
+        $riscos = [
+            0 => 'baixo',
+            1 => 'médio',
+            2 => 'alto'
+        ];
+        $risco = $riscos[mt_rand(0, 2)];
 
         return [
             'nome' => $this->faker->company(),
             'dt_inicio' => $dt_inicio->format('Y-m-d'),
             'dt_fim' => $dt_fim->format('Y-m-d'),
             'valor' => $this->faker->randomFloat(2, 50000, 500000),
-            'risco' => $this->faker->numberBetween(0, 2)
+            'risco' => $risco
         ];
     }
 }

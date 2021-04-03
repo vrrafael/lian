@@ -58,18 +58,18 @@ class ProjetosController extends Controller
         
         switch($dados['risco'])
         {            
-            case '0':
+            case 'baixo':
                 $roi += floatval($dados['invest']) * 0.05;
                 break;
-            case '1':
+            case 'médio':
                 $roi += floatval($dados['invest']) * 0.1;
                 break;
-            case '2':
+            case 'alto':
                 $roi += floatval($dados['invest']) * 0.20;
                 break;
         }
 
-        $dados = array_merge($dados, ['roi' => $roi]);
+        $dados = array_merge($dados, ['roi' => round($roi, 2)]);
 
         return response()->json($dados);
     }

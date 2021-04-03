@@ -21,28 +21,14 @@
                         <tr>
                             <td>{{ $projeto->nome }}</td>
                             <td>R$ {{ number_format($projeto->valor, 2, ',', '.') }}</td>
-                            <td>
-                                @switch($projeto->risco)
-                                    @case(0)
-                                    Baixo
-                                    @break
-                                    @case(1)
-                                    Médio
-                                    @break
-                                    @case(2)
-                                    Alto
-                                    @break
-                                    @default
-                                    '---'
-                                @endswitch
-                            </td>
+                            <td>{{$projeto->risco}}</td>
                             <td>
                                 <a href="{{ route('projetos.edit', ['id' => $projeto->id]) }}" class="tooltipped"
                                     data-tooltip="Editar"><i class="material-icons">edit</i></a>
                                 <a href="#" class="tooltipped" data-tooltip="Excluir"><i
                                         class="material-icons">delete</i></a>
                                 <a class="tooltipped" href="#" data-tooltip="Simular investimento"
-                                    onclick="open_modal({{ $projeto->id }}, {{ $projeto->valor }}, {{ $projeto->risco }})">
+                                    onclick="open_modal({{ $projeto->id }}, {{ $projeto->valor }}, '{{ $projeto->risco }}')">
                                     <i class="material-icons">monetization_on</i></a>
                             </td>
                         </tr>

@@ -27,9 +27,9 @@
 
     <div class="input-field col s6">
         <select name="risco">
-            <option value="0" @if (optional($projeto ?? '')->risco == '0') selected @endif>baixo</option>
-            <option value="1" @if (optional($projeto ?? '')->risco == '1') selected @endif>médio</option>
-            <option value="2" @if (optional($projeto ?? '')->risco == '2') selected @endif>alto</option>
+            <option value="baixo" @if (optional($projeto ?? '')->risco == 'baixo') selected @endif>baixo</option>
+            <option value="médio" @if (optional($projeto ?? '')->risco == 'médio') selected @endif>médio</option>
+            <option value="alto" @if (optional($projeto ?? '')->risco == 'alto') selected @endif>alto</option>
         </select>
         <label>Risco</label>
     </div>
