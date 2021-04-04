@@ -1,3 +1,5 @@
+As instruções são dadas baseadas em um computador executando Ubuntu 20.04.
+
 ## Pré-requisitos
 Como o projeto utiliza o Laravel v8 é necessário atender aos pré-requisitos do framework.
 
