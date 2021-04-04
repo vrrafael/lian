@@ -64,7 +64,7 @@ SESSION_LIFETIME=120
 MEMCACHED_HOST=127.0.0.1
 ```
 Execute _artisan key:generate_ para gerar uma chave para APP_KEY em .env.
-As demais instruções criam _as utlizadas no projeto_, _preenchem as tabelas com alguns registros_ e _ligam o servidor do PHP_.
+As demais instruções criam _as tabelas utlizadas no projeto_, _preenchem as tabelas com alguns registros_ e _ligam o servidor do PHP_.
 ```bash
 artisan key:generate
 artisan migrate
@@ -74,4 +74,5 @@ artisan serve
 No terminal o resultado deverá ser _Starting Laravel development server: http://127.0.0.1:8000_.
 Ao digitar _127.0.0.1:8000_ no navegador deverá aparecer uma tela de login. As credenciais são: e-mail: policarpo@loremipsum.com; senha: password;
 
-_**Obs:** Todos os usuário têm a mesma senha._
+**Obs:** 
+- Alguns usuários foram cadastrados para serem utilizados no campo _participantes_ nos formulários para cadastrar e editar um projeto. Seus e-mails serão exibidos quando alguma letra for digitada no campo.
