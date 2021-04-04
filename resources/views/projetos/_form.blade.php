@@ -4,7 +4,7 @@
             value="{{ old('nome', optional($projeto ?? '')->nome) }}">
         <label for="nome">Nome</label>
         @error('nome')
-            <span class="helper-text red-text text-darken-4">{{$message}}</span>
+            <span class="helper-text red-text text-darken-4">{{ $message }}</span>
         @enderror
     </div>
 </div>
@@ -14,7 +14,7 @@
             value="{{ old('dt_inicio', optional($projeto ?? '')->dt_inicio) }}">
         <label for="dt_inicio">Data de início</label>
         @error('dt_inicio')
-            <span class="helper-text red-text text-darken-4">{{$message}}</span>
+            <span class="helper-text red-text text-darken-4">{{ $message }}</span>
         @enderror
     </div>
     <div class="input-field col s6">
@@ -22,7 +22,7 @@
             value="{{ old('dt_fim', optional($projeto ?? '')->dt_fim) }}">
         <label for="dt_fim">Data de fim</label>
         @error('dt_fim')
-            <span class="helper-text red-text text-darken-4">{{$message}}</span>
+            <span class="helper-text red-text text-darken-4">{{ $message }}</span>
         @enderror
     </div>
 </div>
@@ -33,7 +33,7 @@
             value="{{ old('valor', optional($projeto ?? '')->valor) }}">
         <label for="valor">Valor</label>
         @error('valor')
-            <span class="helper-text red-text text-darken-4">{{$message}}</span>
+            <span class="helper-text red-text text-darken-4">{{ $message }}</span>
         @enderror
     </div>
 
@@ -45,8 +45,15 @@
         </select>
         <label>Risco</label>
         @error('risco')
-            <span class="helper-text red-text text-darken-4">{{$message}}</span>
+            <span class="helper-text red-text text-darken-4">{{ $message }}</span>
         @enderror
+    </div>
+</div>
+<div class="row">
+    <div class="inpt-field col s12">
+        <div class="chips chips-autocomplete" id="p-autocomplete"></div>
+        <input type="hidden" name="participantes" id="participantes" 
+        value="{{ old('valor', optional($projeto ?? '')->participantes) }}">
     </div>
 </div>
 <div class="row">
@@ -64,3 +71,60 @@
         </a>
     </div>
 </div>
+
+@push('js')
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            var elems = document.querySelectorAll('.chips');
+            var chips = M.Chips.init(elems, {
+                autocompleteOptions: {
+                    data: null,
+                    limit: 25, //Infinity,
+                    minLength: 1
+                },
+                onChipAdd: () => {
+                    aux = M.Chips.getInstance(document.getElementById('p-autocomplete')).chipsData
+                    rs = ''
+
+                    aux.forEach(element => {
+                        rs += ''.concat(' ', element.tag)
+                    });
+
+                    document.getElementById('participantes').value = rs
+                },
+                onChipDelete: () => {
+                    aux = M.Chips.getInstance(document.getElementById('p-autocomplete')).chipsData
+                    rs = ''
+
+                    aux.forEach(element => {
+                        rs += ''.concat(' ', element.tag)
+                    });
+
+                    document.getElementById('participantes').value = rs
+                }
+            });            
+
+            function get_users() {
+                httpRequest = new XMLHttpRequest()
+
+                httpRequest.onreadystatechange = () => {
+                    if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                        resp = JSON.parse(JSON.stringify(httpRequest.response))
+                        c = M.Chips.getInstance(document.getElementById('p-autocomplete'))
+                        c.autocomplete.updateData(JSON.parse(resp))
+                        
+                        document.getElementById('participantes').value.split(' ').forEach((v, i) => {
+                            c.addChip({ tag: v })
+                        })
+                    }
+                }
+
+                httpRequest.open('GET', '/api/participantes', false)
+                httpRequest.send()
+            }
+
+            get_users()
+        })
+
+    </script>
+@endpush

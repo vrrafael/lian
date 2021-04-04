@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Participante;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use \App\Models\Projeto;
 
@@ -20,7 +23,7 @@ class ProjetosController extends Controller
 
     public function store()
     {
-        $dados = request()->only(['nome', 'risco', 'valor', 'dt_inicio', 'dt_fim']);
+        $dados = request()->only(['nome', 'risco', 'valor', 'dt_inicio', 'dt_fim', 'participantes']);
 
         $dados['dt_inicio'] = date_create_from_format('d/m/Y', $dados['dt_inicio'])->format('Y-m-d');
         $dados['dt_fim'] = date_create_from_format('d/m/Y', $dados['dt_fim'])->format('Y-m-d');
@@ -33,9 +36,9 @@ class ProjetosController extends Controller
             'dt_fim' => 'required|date',
         ])->validate();
 
-        $p = new Projeto($dados);
+        $projeto = new Projeto($dados);
 
-        if ($p->save()) {
+        if ($projeto->save()) {
             request()->session()->flash('sucesso', 'Projeto criado com sucesso');
             return redirect()->route('projetos.index');
         }
@@ -56,8 +59,8 @@ class ProjetosController extends Controller
 
     public function update($id)
     {
-        $dados = request()->only(['nome', 'risco', 'valor', 'dt_inicio', 'dt_fim']);
-        $p = Projeto::findOrFail(request()->get('id'));
+        $dados = request()->only(['nome', 'risco', 'valor', 'dt_inicio', 'dt_fim', 'participantes']);
+        $projeto = Projeto::findOrFail(request()->get('id'));
 
         $dados['dt_inicio'] = date_create_from_format('d/m/Y', $dados['dt_inicio'])->format('Y-m-d');
         $dados['dt_fim'] = date_create_from_format('d/m/Y', $dados['dt_fim'])->format('Y-m-d');
@@ -70,7 +73,7 @@ class ProjetosController extends Controller
             'dt_fim' => 'required|date',
         ])->validate();
 
-        $updated = $p->update($dados);
+        $updated = $projeto->update($dados);
 
         if ($updated) {
             request()->session()->flash('sucesso', 'Projeto Atualizado');

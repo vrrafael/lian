@@ -18,6 +18,7 @@ class Projeto extends Model
         'dt_fim',
         'valor',
         'risco',
+        'participantes'
     ];
 
 }
