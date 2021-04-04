@@ -50,14 +50,15 @@
     </div>
 </div>
 <div class="row">
-    <div class="inpt-field col s12">
+    <div class="input-field col s12">
         <div class="chips chips-autocomplete" id="p-autocomplete"></div>
-        <input type="hidden" name="participantes" id="participantes" 
-        value="{{ old('valor', optional($projeto ?? '')->participantes) }}">
+        <input type="hidden" name="participantes" id="participantes"
+            value="{{ old('valor', optional($projeto ?? '')->participantes) }}">
+        
     </div>
 </div>
 <div class="row">
-    <div class="col s4">
+    <div class="input-field col s3">
         <button class="btn waves-effect waves-light orange darken-4" type="submit" name="action">
             @if (isset($projeto))
                 Atualizar
@@ -65,7 +66,8 @@
                 Salvar
             @endif
         </button>
-
+    </div>
+    <div class="input-field col s3">
         <a class="btn waves-effect waves-light white black-text" href="{{ route('projetos.index') }}">
             Cancelar
         </a>
@@ -77,6 +79,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             var elems = document.querySelectorAll('.chips');
             var chips = M.Chips.init(elems, {
+                placeholder: 'email@email.com',
                 autocompleteOptions: {
                     data: null,
                     limit: 25, //Infinity,
@@ -102,7 +105,7 @@
 
                     document.getElementById('participantes').value = rs
                 }
-            });            
+            });
 
             function get_users() {
                 httpRequest = new XMLHttpRequest()
@@ -112,9 +115,11 @@
                         resp = JSON.parse(JSON.stringify(httpRequest.response))
                         c = M.Chips.getInstance(document.getElementById('p-autocomplete'))
                         c.autocomplete.updateData(JSON.parse(resp))
-                        
+
                         document.getElementById('participantes').value.split(' ').forEach((v, i) => {
-                            c.addChip({ tag: v })
+                            c.addChip({
+                                tag: v
+                            })
                         })
                     }
                 }
