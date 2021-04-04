@@ -74,4 +74,15 @@ class ProjetosController extends Controller
         return response()->json($dados);
     }
 
+    public function delete()
+    {
+        $p = Projeto::findOrFail(request('id'));
+        $n = $p->nome;
+
+        $p->delete();
+
+        request()->session()->flash('sucesso', "Projeto {$n} excluido com sucesso");
+        return redirect()->back();
+    }
+
 }

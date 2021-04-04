@@ -22,6 +22,5 @@ Route::name('projetos.')
     ->prefix('projetos')
     ->middleware('api')
     ->group(function () {
-        Route::post('delete', 'App\Http\Controllers\ProjetosController@delete')->name('delete');
         Route::post('simular', 'App\Http\Controllers\ProjetosController@simular')->name('simular');
     });

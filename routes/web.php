@@ -40,6 +40,7 @@ Route::name('projetos.')
         Route::post('store', 'App\Http\Controllers\ProjetosController@store')->name('store');
         Route::get('edit/{id}','App\Http\Controllers\ProjetosController@edit')->name('edit');
         Route::put('edit/{id}','App\Http\Controllers\ProjetosController@update')->name('update');
+        Route::delete('delete', 'App\Http\Controllers\ProjetosController@delete')->name('delete');
     });
 
 Route::post('authenticate', 'App\Http\Controllers\LoginController@authenticate')->name('authenticate');
