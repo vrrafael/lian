@@ -7,12 +7,12 @@
 </div>
 <div class="row">
     <div class="input-field col s6">
-        <input id="dt_inicio" name="dt_inicio" type="date" class="validate" required
-            value="{{ old('dt_inicio', optional($projeto ?? '')->dt_inicio) }}">
+        <input type="text" class="datepicker validate" id="dt_inicio" name="dt_inicio" required 
+        value="{{ old('dt_inicio', optional($projeto ?? '')->dt_inicio) }}">
         <label for="dt_inicio">Data de início</label>
     </div>
     <div class="input-field col s6">
-        <input id="dt_fim" name="dt_fim" type="date" class="validate" required
+        <input id="dt_fim" name="dt_fim" type="text" class="datepicker validate" required
             value="{{ old('dt_fim', optional($projeto ?? '')->dt_fim) }}">
         <label for="dt_fim">Data de fim</label>
     </div>
@@ -34,17 +34,17 @@
         <label>Risco</label>
     </div>
 </div>
-<div class="row">    
+<div class="row">
     <div class="col s4">
         <button class="btn waves-effect waves-light orange darken-4" type="submit" name="action">
             @if (isset($projeto))
                 Atualizar
             @else
                 Salvar
-            @endif  
+            @endif
         </button>
-    
-        <a class="btn waves-effect waves-light white black-text" href="{{route('projetos.index')}}">
+
+        <a class="btn waves-effect waves-light white black-text" href="{{ route('projetos.index') }}">
             Cancelar
         </a>
     </div>

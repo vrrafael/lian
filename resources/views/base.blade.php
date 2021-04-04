@@ -75,9 +75,24 @@
 
             var elems = document.querySelectorAll('.modal');
             var modals = M.Modal.init(elems, {
-                dismissible: false,                
+                dismissible: false,
                 onCloseEnd: () => {
                     document.getElementById('projeto_form').reset()
+                }
+            });
+
+            var elems = document.querySelectorAll('.datepicker');
+            var dates = M.Datepicker.init(elems, {
+                format: 'dd/mm/yyyy',
+                i18n: {
+                    cancel: 'Cancelar',
+                    weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+                    monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago',
+                        'Set', 'Out', 'Nov', 'Dez'
+                    ],
+                    months: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+                        'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+                    ]
                 }
             });
 

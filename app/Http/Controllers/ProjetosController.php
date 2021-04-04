@@ -19,8 +19,12 @@ class ProjetosController extends Controller
 
     public function store()
     {
-        $data = request()->only(['nome', 'risco', 'valor', 'dt_inicio', 'dt_fim']);
-        $p = new Projeto($data);
+        $dados = request()->only(['nome', 'risco', 'valor', 'dt_inicio', 'dt_fim']);
+        
+        $dados['dt_inicio'] = date_create_from_format('d/m/Y', $dados['dt_inicio'])->format('Y-m-d');
+        $dados['dt_fim'] = date_create_from_format('d/m/Y', $dados['dt_fim'])->format('Y-m-d');
+
+        $p = new Projeto($dados);
 
         if ($p->save()) {
             request()->session()->flash('sucesso', 'Projeto criado com sucesso');
@@ -34,13 +38,22 @@ class ProjetosController extends Controller
     public function edit($id)
     {
         $p = Projeto::findOrFail($id);
+        
+        $p->dt_inicio = date_create_from_format('Y-m-d', $p->dt_inicio)->format('d/m/Y');
+        $p->dt_fim = date_create_from_format('Y-m-d', $p->dt_fim)->format('d/m/Y');
+
         return view('projetos.edit', ['projeto' => $p]);
     }
 
     public function update($id)
     {
+        $dados = request()->only(['nome', 'risco', 'valor', 'dt_inicio', 'dt_fim']);
         $p = Projeto::findOrFail(request()->get('id'));
-        $updated = $p->update(request()->only(['nome', 'risco', 'valor', 'dt_inicio', 'dt_fim']));
+        
+        $dados['dt_inicio'] = date_create_from_format('d/m/Y', $dados['dt_inicio'])->format('Y-m-d');
+        $dados['dt_fim'] = date_create_from_format('d/m/Y', $dados['dt_fim'])->format('Y-m-d');
+
+        $updated = $p->update($dados);
 
         if ($updated) {
             request()->session()->flash('sucesso', 'Projeto Atualizado');
