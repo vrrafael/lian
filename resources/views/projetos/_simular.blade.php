@@ -34,6 +34,9 @@
                 </div>
             </form>
         </div>
+        <div class="row">
+            <span class="helper-text red-text text-darken-4" id="resp_erro"></span>
+        </div>
     </div>
     <div class="modal-footer">
         <a href="#!" class="modal-close waves-effect waves-green btn-flat">Feclar</a>
@@ -44,9 +47,10 @@
     document.addEventListener('DOMContentLoaded', () => {
         var elems = document.querySelectorAll('.modal');
         var modals = M.Modal.init(elems, {
-            dismissible: false,
+            dismissible: false,            
             onCloseEnd: () => {
                 document.getElementById('projeto_form').reset()
+                document.getElementById('resp_erro').innerHTML = ''
             }
         });
 
@@ -69,6 +73,7 @@
             if (httpRequest.readyState === XMLHttpRequest.DONE) {
                 resp = JSON.parse(httpRequest.response)
                 document.getElementById('projeto_roi').value = resp.roi
+                document.getElementById('resp_erro').innerHTML = resp.mensagem
                 M.updateTextFields();
             }
         }

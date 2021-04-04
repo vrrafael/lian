@@ -1,28 +1,40 @@
 <div class="row">
     <div class="input-field col s12">
         <input id="nome" name="nome" type="text" class="validate" required maxlength="100"
-            value="{{ old('name', optional($projeto ?? '')->nome) }}">
+            value="{{ old('nome', optional($projeto ?? '')->nome) }}">
         <label for="nome">Nome</label>
+        @error('nome')
+            <span class="helper-text red-text text-darken-4">{{$message}}</span>
+        @enderror
     </div>
 </div>
 <div class="row">
     <div class="input-field col s6">
-        <input type="text" class="datepicker validate" id="dt_inicio" name="dt_inicio" required 
-        value="{{ old('dt_inicio', optional($projeto ?? '')->dt_inicio) }}">
+        <input type="text" class="datepicker validate" id="dt_inicio" name="dt_inicio" required
+            value="{{ old('dt_inicio', optional($projeto ?? '')->dt_inicio) }}">
         <label for="dt_inicio">Data de início</label>
+        @error('dt_inicio')
+            <span class="helper-text red-text text-darken-4">{{$message}}</span>
+        @enderror
     </div>
     <div class="input-field col s6">
         <input id="dt_fim" name="dt_fim" type="text" class="datepicker validate" required
             value="{{ old('dt_fim', optional($projeto ?? '')->dt_fim) }}">
         <label for="dt_fim">Data de fim</label>
+        @error('dt_fim')
+            <span class="helper-text red-text text-darken-4">{{$message}}</span>
+        @enderror
     </div>
 </div>
 <div class="row">
 
     <div class="input-field col s6">
-        <input id="valor" name="valor" type="number" class="validate" required step=any min=1 max="500000"
+        <input id="valor" name="valor" type="number" class="validate" required step=any min=1 max="999999.99"
             value="{{ old('valor', optional($projeto ?? '')->valor) }}">
         <label for="valor">Valor</label>
+        @error('valor')
+            <span class="helper-text red-text text-darken-4">{{$message}}</span>
+        @enderror
     </div>
 
     <div class="input-field col s6">
@@ -32,6 +44,9 @@
             <option value="alto" @if (optional($projeto ?? '')->risco == 'alto') selected @endif>alto</option>
         </select>
         <label>Risco</label>
+        @error('risco')
+            <span class="helper-text red-text text-darken-4">{{$message}}</span>
+        @enderror
     </div>
 </div>
 <div class="row">
